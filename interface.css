@@ -1,0 +1,26 @@
+body{
+	background-color:#2c2533;
+	color:white;
+	font-size:20px;
+	line-height:21px;
+}
+
+button{
+	background-color:#554960;
+	color:white;
+	border:1px solid black;
+	border-radius:5px;
+	padding:10px;
+	font-size:20px;
+	transition:0.2s ease-in all;
+}
+
+button:hover{
+	background-color:#675a72;
+}
+
+.container{
+	width:90%;
+	margin:0 auto;
+	padding-top:20px;
+}
