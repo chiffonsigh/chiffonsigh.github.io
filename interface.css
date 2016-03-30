@@ -8,8 +8,10 @@ body{
 }
 
 h1{
-	font-weight:500;
-	font-size:24px;
+	font-weight:400;
+	font-size:80px;
+	font-family:'Cabin Sketch', serif;
+	margin:40px 0;
 }
 
 button{
@@ -22,6 +24,7 @@ button{
 	font-family:'Yantramanav', sans-serif;
 	font-weight:300;
 	font-size:16px;
+	margin:10px 0;
 }
 
 button:hover{
@@ -48,4 +51,19 @@ button:hover{
 .event-log li{
 	margin: 5px 0;
 	font-size:16px;
+}
+
+#progress-chop-tree {
+    width: 400px;
+    height: 22px;
+    border: 1px solid #111;
+    background-color: #292929;
+}
+#progress-chop-tree div {
+    height: 100%;
+    color: #fff;
+    text-align: right;
+    line-height: 22px; /* same as #progressBar height if we want text middle aligned */
+    width: 0;
+    background-color:#554960;
 }
