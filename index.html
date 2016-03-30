@@ -1,23 +1,27 @@
 <html>
 	<head>
 		<title>
-			Incremental Learning
+			Pine Barrens
 		</title>
 
+		<link rel="stylesheet" type="text/css" href="reset.css" />
+		<link href='https://fonts.googleapis.com/css?family=Yantramanav:300,500' rel='stylesheet' type='text/css'>
 		<link rel="stylesheet" type="text/css" href="interface.css" />
+
 
 	</head>
 	<body>
 
 	<div class="container">
 
-	<h1>Logs: <span id="logs-count">0</span></h1>
-	<h1>Pine Needles: <span id="pine-needles-count">0</span></h1>
-	<h1>Axes: <span id="axes-count">0</span></h1>
+	<h3>Logs: <span id="logs-count">0</span></h3>
+	<h3>Pine Needles: <span id="pine-needles-count">0</span></h3>
+	<h3>Axes: <span id="axes-count">0</span></h3>
+	<h3>Axe Durability: <span id="axes-durability">100</span></h3>
 
 	<button id="chop-tree">Chop Tree</button>
 
-	<h2>Store:</h2>
+<!-- 	<h2>Store:</h2>
 
 	<button id="novice-widgeteer">Hire Novice Widgeteer</button>
 	<button id="master-widgeteer">Hire Master Widgeteer</button>
@@ -30,10 +34,16 @@
 	    <li>Add an upgrades section</li>
 	    <li>Add save/load buttons that use localStorage.setItem() and localStorage.getItem()</li>
 	    <li>Check the Bootstrap 3 checkbox in the upper left and change the &lt;button&gt; elements to use &lt;div class="btn btn-primary"&gt; instead</li>
-	</ul>
+	</ul> -->
 
 	</div>
-	
+
+	<div class="event-log">
+	<h1>Message Log</h1>
+		<ul id="log">
+		</ul>
+	</div>
+
 	<script type="text/javascript" src="jquery.js"></script>
 	<script type="text/javascript" src="main.js"></script>
 	</body>

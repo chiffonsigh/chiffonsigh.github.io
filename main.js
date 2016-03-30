@@ -1,8 +1,14 @@
 // Basic variable declaration - keep track of how many of each
 // item we currently own, and how much the new ones should cost.
 var numLogs = 0;
+var incrementLogs = 5;
+
 var numPineNeedles = 0;
+var incrementPineNeedles = 100;
+
 var numAxes = 1;
+var durabilityAxes = 100;
+
 var numWidgets = 0;
 var numNoviceWidgeteers = 0;
 var numMasterWidgeteers = 0;
@@ -11,8 +17,10 @@ var masterWidgeteerCost = 25;
 
 // Increase numWidgets every time produce-widget is clicked
 $('#chop-tree').on('click', function () {
-    numLogs = numLogs + 5;
-    numPineNeedles = numPineNeedles + 100;
+    numLogs = numLogs + incrementLogs;
+    numPineNeedles = numPineNeedles + incrementPineNeedles;
+    durabilityAxes = durabilityAxes - 1;
+    $("#log").append('<li>'+'You chopped down a tree and got '+ incrementLogs + ' logs and ' + incrementPineNeedles + ' pine needles.' + '</li>');
 });
 
 // Same for novice-widgeteer
@@ -45,6 +53,7 @@ window.setInterval(function () {
     $('#logs-count').text(Math.floor(numLogs));
     $('#pine-needles-count').text(Math.floor(numPineNeedles));
     $('#axes-count').text(Math.floor(numAxes));
+    $('#axes-durability').text(Math.floor(durabilityAxes));
 
     // Update the widgeteers with their current prices
     $('#novice-widgeteer').text('Hire Novice Widgeteer - ' + noviceWidgeteerCost);
