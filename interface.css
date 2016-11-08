@@ -71,3 +71,8 @@ button:focus{
     width: 0;
     background-color:#554960;
 }
+
+#dragTables td{
+	padding:10px;
+	border:1px solid gray;
+}

@@ -1,3 +1,13 @@
+//load the colors
+var rawColors;
+var dragColors;
+
+$.getJSON("colors.json", function(data) {
+  rawColors = data;
+});
+
+dragColors = $.map(rawColors, function(el) { return el });
+
 //vars for item count
 var numSteps = 0;
 var incrementSteps = 1;
@@ -23,6 +33,25 @@ function progress(percent, $element) {
     $element.find('div').animate({ width: progressBarWidth }, .001);
 }
 
+function dragTableCreate(drag) {
+    // Create table.
+    var table = document.createElement('table');
+    // Insert New Row for table at index '0'.
+    var row1 = table.insertRow(0);
+    // Insert New Column for Row1 at index '0'.
+    var row1col1 = row1.insertCell(0);
+    row1col1.innerHTML = 'Name: ' + drag.name;
+    // Insert New Column for Row1 at index '1'.
+    var row1col2 = row1.insertCell(1);
+    row1col2.innerHTML = 'Color: ' + drag.color;
+    // Insert New Column for Row1 at index '2'.
+    var row1col3 = row1.insertCell(2);
+    row1col3.innerHTML = 'Size: ' + drag.size;
+    // Append Table into div.
+    var div = document.getElementById('dragTables');
+    div.appendChild(table);
+}
+
 // Increase numWidgets every time produce-widget is clicked
 $('#steps').on('click', function () {
 	numSteps++;
@@ -31,6 +60,8 @@ $('#steps').on('click', function () {
 //debug: generate a dragon
 $('#make_a_drag').on('click', function () {
     drags.push(new Dragon(generate_name('egyptian'), 'red', 1, 3));
+    dragTableCreate(drags[numDrags]);
+    numDrags++;
 });
 
 // Same for novice-widgeteer
@@ -71,13 +102,8 @@ window.setInterval(function () {
     // numWidgets += (numMasterWidgeteers * 5 / 100);
 
     // Update the text showing how many widgets we have, using Math.floor() to round down
-    $('#steps-count').text(Math.floor(numSteps));
-    if(drags[0] != null){
-        for (i = 0; i < drags.length; i++) { 
-            $('#drag-data').append(drags[i].name);
-        }
-    }
-    
+    // $('#steps-count').text(Math.floor(numSteps));
+    $('#steps-count').text(numSteps);    
 
     // // Update the widgeteers with their current prices
     // $('#novice-widgeteer').text('Hire Novice Widgeteer - ' + noviceWidgeteerCost);
