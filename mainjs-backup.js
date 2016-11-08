@@ -2,18 +2,15 @@
 var numSteps = 0;
 var incrementSteps = 1;
 
-//function to generate a random dragon
-function Dragon(name, color, size, numEggs){
-    this.name = name;
-    this.color = color;
-    this.size = size;
-    this.numEggs = numEggs;
-}
+//vars for action buttons
+var progressLogs = 0;
+var progressLogsStarted = 0;
 
-var drags = new Array(); // store dose drags
-
-//dragon counts
-var numDrags = 0;
+var numWidgets = 0;
+var numNoviceWidgeteers = 0;
+var numMasterWidgeteers = 0;
+var noviceWidgeteerCost = 10;
+var masterWidgeteerCost = 25;
 
 //Function to animate a progress bar
 function progress(percent, $element) {
@@ -28,11 +25,6 @@ $('#steps').on('click', function () {
 	numSteps++;
 });
 
-//debug: generate a dragon
-$('#make_a_drag').on('click', function () {
-    drags.push(new Dragon(generate_name('egyptian'), 'red', 1, 3));
-});
-
 // Same for novice-widgeteer
 $('#novice-widgeteer').on('click', function () {
     numNoviceWidgeteers++;
@@ -44,25 +36,32 @@ $('#novice-widgeteer').on('click', function () {
     noviceWidgeteerCost = Math.ceil(noviceWidgeteerCost * 1.1);
 });
 
+// Ditto for master-widgeteer... you get the idea
+$('#master-widgeteer').on('click', function () {
+    numMasterWidgeteers++;
+    numWidgets -= masterWidgeteerCost;
+    masterWidgeteerCost = Math.ceil(masterWidgeteerCost * 1.1);
+});
+
 // Run UI update code every 10ms
 window.setInterval(function () {
 
 	//update progress bars
-	// if(progressLogsStarted == 1){
-	// 	while(progressLogs<100){
-	// 		progressLogs = progressLogs + 1;
-	// 		console.log('ProgressLogs: ' + progressLogs)
-	// 		progress(progressLogs, $('#progress-chop-tree'));
-	// 	}
-	// 	progressLogsStarted = 0;
-	// 	console.log(progressLogsStarted);
-	// 	progressLogs = 0;
-	// 	progress(progressLogs, $('#progress-chop-tree'));
-	// 	numLogs = numLogs + incrementLogs;
-	//     numPineNeedles = numPineNeedles + incrementPineNeedles;
-	//     durabilityAxes = durabilityAxes - 1;
- //    	$("#log").prepend('<li>'+'You chopped down a tree and got '+ incrementLogs + ' logs and ' + incrementPineNeedles + ' pine needles.' + '</li>');
-	// }
+	if(progressLogsStarted == 1){
+		while(progressLogs<100){
+			progressLogs = progressLogs + 1;
+			console.log('ProgressLogs: ' + progressLogs)
+			progress(progressLogs, $('#progress-chop-tree'));
+		}
+		progressLogsStarted = 0;
+		console.log(progressLogsStarted);
+		progressLogs = 0;
+		progress(progressLogs, $('#progress-chop-tree'));
+		numLogs = numLogs + incrementLogs;
+	    numPineNeedles = numPineNeedles + incrementPineNeedles;
+	    durabilityAxes = durabilityAxes - 1;
+    	$("#log").prepend('<li>'+'You chopped down a tree and got '+ incrementLogs + ' logs and ' + incrementPineNeedles + ' pine needles.' + '</li>');
+	}
 
     // Novices add 1 per second (1/100 every 10ms)
     // numWidgets += (numNoviceWidgeteers * 1 / 100);
@@ -72,12 +71,6 @@ window.setInterval(function () {
 
     // Update the text showing how many widgets we have, using Math.floor() to round down
     $('#steps-count').text(Math.floor(numSteps));
-    if(drags[0] != null){
-        for (i = 0; i < drags.length; i++) { 
-            $('#drag-data').append(drags[i].name);
-        }
-    }
-    
 
     // // Update the widgeteers with their current prices
     // $('#novice-widgeteer').text('Hire Novice Widgeteer - ' + noviceWidgeteerCost);
