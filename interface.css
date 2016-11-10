@@ -14,6 +14,10 @@ h1{
 	margin:40px 0;
 }
 
+b{
+	font-weight:500;
+}
+
 button{
 	background-color:#554960;
 	color:white;
@@ -49,7 +53,15 @@ button:focus{
 	position:absolute;
 	right:0;
 	top:0;
-	width:30%;
+	width:20%;
+	overflow:auto;
+}
+
+.main-window{
+	width:80%;
+	float:left;
+	height:90%;
+	overflow:auto;
 }
 
 .event-log li{
@@ -75,4 +87,25 @@ button:focus{
 #dragTables td{
 	padding:10px;
 	border:1px solid gray;
+}
+
+.dragDesc{
+	padding:10px;
+	display:inline-block;
+	float:left;
+	margin:10px;
+	background-color:#554960;
+	color:white;
+	border:1px solid black;
+	border-radius:5px;
+	font-size:14px;
+	width:120px;
+	text-align:center;
+}
+
+.dragImg{
+    width: 100px;
+    height: 100px;
+    margin:0 auto;
+    margin-bottom:10px;
 }

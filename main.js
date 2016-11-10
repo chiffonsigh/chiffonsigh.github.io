@@ -1,23 +1,32 @@
-//load the colors
-var rawColors;
-var dragColors;
-
-$.getJSON("colors.json", function(data) {
-  rawColors = data;
-});
-
-dragColors = $.map(rawColors, function(el) { return el });
+//get ye colors
+function getRandomColor(){
+    return "#000000".replace(/0/g,function(){return (~~(Math.random()*16)).toString(16);});
+}
 
 //vars for item count
 var numSteps = 0;
 var incrementSteps = 1;
 
-//function to generate a random dragon
+//function to generate a new dragon
 function Dragon(name, color, size, numEggs){
     this.name = name;
     this.color = color;
     this.size = size;
     this.numEggs = numEggs;
+}
+
+function drawDragDesc(dragon){
+    var desc = "<div class='dragDesc'>";
+    desc += "<div class='dragImg' style='background-color:" + dragon.color + ";'>";
+    desc += "<img src='dragon.png'/>";
+    desc += "</div>";
+    desc += "<b>" + dragon.name + "</b>";
+    desc += "<br/>";
+    desc += "Size: " + dragon.size;
+    desc += "<br/>";
+    desc += "Eggs: " + dragon.numEggs;
+    desc += "</div>";
+    $("#dragTables").append(desc);
 }
 
 var drags = new Array(); // store dose drags
@@ -33,34 +42,16 @@ function progress(percent, $element) {
     $element.find('div').animate({ width: progressBarWidth }, .001);
 }
 
-function dragTableCreate(drag) {
-    // Create table.
-    var table = document.createElement('table');
-    // Insert New Row for table at index '0'.
-    var row1 = table.insertRow(0);
-    // Insert New Column for Row1 at index '0'.
-    var row1col1 = row1.insertCell(0);
-    row1col1.innerHTML = 'Name: ' + drag.name;
-    // Insert New Column for Row1 at index '1'.
-    var row1col2 = row1.insertCell(1);
-    row1col2.innerHTML = 'Color: ' + drag.color;
-    // Insert New Column for Row1 at index '2'.
-    var row1col3 = row1.insertCell(2);
-    row1col3.innerHTML = 'Size: ' + drag.size;
-    // Append Table into div.
-    var div = document.getElementById('dragTables');
-    div.appendChild(table);
-}
-
 // Increase numWidgets every time produce-widget is clicked
 $('#steps').on('click', function () {
 	numSteps++;
 });
 
-//debug: generate a dragon
+//debug: generate a random dragon
 $('#make_a_drag').on('click', function () {
-    drags.push(new Dragon(generate_name('egyptian'), 'red', 1, 3));
-    dragTableCreate(drags[numDrags]);
+    var newDragColor = getRandomColor();
+    drags.push(new Dragon(generate_name('egyptian'), newDragColor, 1, 3));
+    drawDragDesc(drags[numDrags]);
     numDrags++;
 });
 
